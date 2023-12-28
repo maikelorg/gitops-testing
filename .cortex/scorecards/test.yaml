@@ -5,7 +5,8 @@ description: |-
 
   (Created from Scorecard template)
 draft: false
-notificationsEnabled: true
+notifications:
+  enabled: false
 ladder:
   name: Default Ladder
   levels:
