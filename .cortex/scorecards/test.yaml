@@ -4,7 +4,7 @@ description: |-
   Enforce security standards across your organization, including code freshness, static analysis, and vulnerability scans.
 
   (Created from Scorecard template)
-draft: false
+draft: true
 ladder:
   name: Default Ladder
   levels:
