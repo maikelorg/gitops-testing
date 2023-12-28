@@ -1,8 +1,88 @@
-tag: parsing-test
-name: Parsing Scorecard Notifications
+tag: security-scorecard
+name: Security Scorecard
+description: |-
+  Enforce security standards across your organization, including code freshness, static analysis, and vulnerability scans.
+
+  (Created from Scorecard template)
+draft: false
+notificationsEnabled: true
+ladder:
+  name: Default Ladder
+  levels:
+  - name: Bronze
+    rank: 1
+    color: '#c38b5f'
+  - name: Silver
+    rank: 2
+    color: '#8c9298'
+  - name: Gold
+    rank: 3
+    color: '#cda400'
 rules:
-  - expression: deploys(lookback=duration("P7D"),types=["ROLLBACK"]).count = 0
-  weight: 12
-  draft: false
-notifications:
-  enabled: true
+- title: Default branch is protected
+  expression: git.branch_protection() != null
+  weight: 1
+  level: Silver
+  failureMessage: "This rule is only supported for GitLab and GitHub. If you don't\
+    \ have a repository specified, you can add one by following the instructions in\
+    \ our docs for [GitHub](https://docs.cortex.io/docs/reference/integrations/github)."
+- title: Code last updated in the last week
+  expression: git.lastCommit.freshness < duration("P7D")
+  weight: 1
+  level: Bronze
+  failureMessage: "You can add a git repository by following the instructions in our\
+    \ docs for [Azure DevOps](https://docs.cortex.io/docs/reference/integrations/azuredevops),\
+    \ [Bitbucket](https://docs.cortex.io/docs/reference/integrations/bitbucket), [GitHub](https://docs.cortex.io/docs/reference/integrations/github),\
+    \ or [GitLab](https://docs.cortex.io/docs/reference/integrations/gitlab) depending\
+    \ on the tool that your team uses."
+- title: At least one required approval to merge
+  expression: git.numRequiredApprovals > 0
+  weight: 1
+  level: Silver
+  failureMessage: "This rule is only supported for GitLab and GitHub. If you don't\
+    \ have a repository specified, you can add one by following the instructions in\
+    \ our docs for [GitHub](https://docs.cortex.io/docs/reference/integrations/github),\
+    \ or [GitLab](https://docs.cortex.io/docs/reference/integrations/gitlab) depending\
+    \ on the tool that your team uses."
+- expression: oncall != null
+  weight: 3
+  level: Bronze
+  filter:
+    category: SERVICE
+- title: Has owners
+  expression: ownership.count > 0
+  weight: 1
+  level: Bronze
+  failureMessage: "You can add a owners by following the instructions in [our docs](https://docs.cortex.io/docs/reference/basics/ownership)."
+- title: Has a low number of Snyk issues
+  expression: snyk.issues() < 5
+  weight: 1
+  level: Gold
+  failureMessage: "Make sure Snyk is properly set up by following the instructions\
+    \ in [our docs](https://docs.cortex.io/docs/reference/integrations/snyk)."
+- title: SonarQube analysis uploaded within the last 7 days
+  expression: sonarqube.freshness < duration("P7D")
+  weight: 1
+  level: Silver
+  failureMessage: "Make sure SonarQube is properly set up by following the instruction\
+    \ in [our docs](https://docs.cortex.io/docs/reference/integrations/sonarqube)."
+- title: Code coverage is above 70%
+  expression: sonarqube.metric("coverage") > 70
+  weight: 1
+  level: Silver
+  failureMessage: "Make sure SonarQube is properly set up by following the instruction\
+    \ in [our docs](https://docs.cortex.io/docs/reference/integrations/sonarqube)."
+- title: Less than 5 SonarQube security hotspots
+  expression: sonarqube.metric("security_hotspots") < 5
+  weight: 1
+  level: Gold
+  failureMessage: "Make sure SonarQube is properly set up by following the instruction\
+    \ in [our docs](https://docs.cortex.io/docs/reference/integrations/sonarqube)."
+- title: Less than 5 SonarQube vulnerabilities
+  expression: sonarqube.metric("vulnerabilities") < 5
+  weight: 1
+  level: Gold
+  failureMessage: "Make sure SonarQube is properly set up by following the instruction\
+    \ in [our docs](https://docs.cortex.io/docs/reference/integrations/sonarqube)."
+filter:
+  category: SERVICE
