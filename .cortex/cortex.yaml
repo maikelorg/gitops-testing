@@ -1,0 +1,22 @@
+openapi: 3.0.1
+info:
+  title: Gitops Testing
+  x-cortex-git:
+    github:
+      alias: Cortex GH
+      repository: maikelorg/gitops-testing
+  x-cortex-tag: gitops-testing
+  x-cortex-type: service
+  x-cortex-oncall:
+    pagerduty:
+      id: PXRFPG4
+      type: SERVICE
+  x-cortex-owners:
+  - type: SLACK
+    channel: notification-testing-channel-2
+    notificationsEnabled: true
+  - type: EMAIL
+    email: mikolaj.stepniewski@cortex.io
+  - name: test-team
+    type: GROUP
+    provider: CORTEX
