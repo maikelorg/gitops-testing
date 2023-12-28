@@ -2,7 +2,7 @@ tag: parsing-test
 name: Parsing Scorecard Notifications
 rules:
   - expression: deploys(lookback=duration("P7D"),types=["ROLLBACK"]).count = 0
-  weight: 10
+  weight: 12
   draft: false
 notifications:
   enabled: true
