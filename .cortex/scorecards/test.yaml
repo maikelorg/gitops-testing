@@ -1,5 +1,5 @@
-tag: notif-test-scorecard
-name: Notif test scorecard
+tag: gitops-test-scorecard
+name: GitOps test scorecard
 draft: false
 notifications:
   enabled: true
