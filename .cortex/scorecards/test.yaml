@@ -6,7 +6,7 @@ notifications:
   scoreDropNotificationsEnabled: true
 exemptions:
   enabled: true
-  autoApprove: false
+  autoApprove: true
 rules:
 - title: On-call is assigned
   expression: oncall != null
