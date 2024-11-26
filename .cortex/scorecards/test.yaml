@@ -1,7 +1,41 @@
-name: Podium Bug Repro 3
-tag: unique-tag
+tag: gitops-test-scorecard
+name: GitOps test scorecard
 draft: false
+notifications:
+  enabled: true
+  scoreDropNotificationsEnabled: true
+exemptions:
+  enabled: true
+  autoApprove: false
 rules:
-  - title: Has description
-    expression: entity.description() != null
-    weight: 10
+- title: On-call is assigned
+  expression: oncall != null
+  weight: 1
+  failureMessage: This entity doesn't have any on-call attached.
+  filter:
+    kind: GENERIC
+    types:
+      include:
+      - service
+- title: Description is set
+  expression: entity.description() != null
+  weight: 1
+  failureMessage: "Visit this [page](http://app.local.getcortexapp.com:3000/) please"
+  filter:
+    kind: GENERIC
+    types:
+      include:
+      - service
+- title: Has owners
+  expression: ownership != null
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+filter:
+  kind: GENERIC
+  types:
+    include:
+    - service
+  query: entity.name().matchesIn("Brain Backend") or entity.name().matchesIn("Brain
+    Ai")
