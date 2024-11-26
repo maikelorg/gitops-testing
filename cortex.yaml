@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Gitops Testing
+  title: Gitops Testing 2
   x-cortex-git:
     github:
       alias: Cortex GH
