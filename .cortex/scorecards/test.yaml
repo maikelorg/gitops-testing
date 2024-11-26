@@ -1,7 +1,7 @@
-name: Podium Bug Repro 2
+name: Podium Bug Repro 3
 tag: unique-tag
 draft: false
 rules:
   - title: Has description
-    expression: description != null
+    expression: entity.description() != null
     weight: 10
