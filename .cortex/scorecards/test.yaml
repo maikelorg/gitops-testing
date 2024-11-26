@@ -34,6 +34,7 @@ rules:
   weight: 1
   filter:
     kind: GENERIC
+    types: {}
 filter:
   kind: GENERIC
   types:
