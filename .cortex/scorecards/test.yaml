@@ -22,7 +22,7 @@ rules:
   identifier: 2a2e6d7e9ea16df6a2a18db501126d53
   weight: 1
   level: Bronze
-  failureMessage: This entity doesn't have any on-call attached.
+  failureMessage: This entity doesn't have any on-call attached. !!
   filter:
     kind: GENERIC
     types:
