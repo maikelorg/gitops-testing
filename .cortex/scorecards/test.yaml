@@ -1,17 +1,27 @@
-tag: gitops-test-scorecard
-name: GitOps test scorecard
+tag: notif-test-scorecard
+name: Notif test scorecard
 draft: false
 notifications:
   enabled: true
   scoreDropNotificationsEnabled: true
 exemptions:
   enabled: true
-  autoApprove: true
+  autoApprove: false
+ladder:
+  name: Default Ladder
+  levels:
+  - name: Bronze
+    rank: 1
+    color: 592eb6
+  - name: Silver
+    rank: 2
+    color: 8045cd
 rules:
 - title: On-call is assigned
   expression: oncall != null
   identifier: 2a2e6d7e9ea16df6a2a18db501126d53
-  weight: 2
+  weight: 1
+  level: Bronze
   failureMessage: This entity doesn't have any on-call attached.
   filter:
     kind: GENERIC
@@ -22,6 +32,7 @@ rules:
   expression: entity.description() != null
   identifier: 945e4ff1f7750f3bcb667199e1a595ab
   weight: 1
+  level: Bronze
   failureMessage: "Visit this [page](http://app.local.getcortexapp.com:3000/) please"
   filter:
     kind: GENERIC
@@ -32,6 +43,7 @@ rules:
   expression: ownership != null
   identifier: 2d3e1a5a20120b283561dd31c73117aa
   weight: 1
+  level: Silver
   filter:
     kind: GENERIC
     types: {}
