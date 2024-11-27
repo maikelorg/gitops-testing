@@ -28,6 +28,17 @@ rules:
     types:
       include:
       - service
+- title: Tag is not null
+  expression: entity.tag() != null
+  identifier: 2a2e6d7e9fa16df6a2a18db501326d53
+  weight: 3
+  level: Bronze
+  failureMessage: abcd.
+  filter:
+    kind: GENERIC
+    types:
+      include:
+      - service
 - title: Description is set
   expression: entity.description() != null
   identifier: 945e4ff1f7750f3bcb667199e1a595ab
