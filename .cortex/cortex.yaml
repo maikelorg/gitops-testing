@@ -7,6 +7,10 @@ info:
       repository: maikelorg/gitops-testing
   x-cortex-tag: gitops-testing
   x-cortex-type: service
+  x-cortex-link:
+  - name: OpenAPI Specs
+    type: OPENAPI
+    url: github:maikelorg/gitops-testing:docs/openapi.json
   x-cortex-oncall:
     pagerduty:
       id: PXRFPG4
