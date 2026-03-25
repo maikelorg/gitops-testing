@@ -5,6 +5,7 @@ info:
     github:
       alias: maikelorg
       repository: maikelorg/gitops-testing
+      basepath: packages/base
   x-cortex-tag: gitops-testing
   x-cortex-type: service
   x-cortex-link:
