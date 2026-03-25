@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Gitops Testing 8
+  title: Gitops Testing 9
   x-cortex-git:
     github:
       alias: maikelorg
