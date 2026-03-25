@@ -3,7 +3,7 @@ info:
   title: Gitops Testing 8
   x-cortex-git:
     github:
-      alias: Cortex GH
+      alias: maikelorg
       repository: maikelorg/gitops-testing
   x-cortex-tag: gitops-testing
   x-cortex-type: service
